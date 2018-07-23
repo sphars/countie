@@ -11,24 +11,26 @@
     <link rel="stylesheet" href="css/style.css" />
     <link href="img/favicon.png" rel="shortcut icon" type="image/x-icon" />
 
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <h1 class="text-center">Countie</h1>
+    <header class="text-center">
+        <h1>Countie</h1>
+        <p>For when you gotta count something quickly</p>
     </header>
     <div class="main-content">
-        <div class="content-item buttons">
-            <button href="#" class="click-button text-center" id="increase-count" onclick="increaseCount()">
-                <span class="button-text">+</span>
-            </button>
-            <button href="#" class="click-button text-center" id="decrease-count" onclick="decreaseCount()">
-                <span class="button-text">-</span>
-            </button>
+        <div class="content-item">
+            <div class="text-center" id="count">0</div>
+        </div>
+        <div class="content-item count-buttons">
+            <button href="#" class="btn btn-block btn-rounded" id="increase">+</button>
+            <button href="#" class="btn btn-block btn-rounded" id="decrease">-</button>
         </div>
         <div class="content-item">
-            <div class="text-center" id="count">&nbsp;</div>
-        </div>
+            <button href="#" class="btn btn-rounded" id="save">Save</button>
+            <button href="#" class="btn btn-rounded" id="reset">Reset</button>
+        </div>        
     </div>
     <footer>
         <div class="text-center"><a href="https://github.com/spncrhrstn/countie" target="_blank">Github</a></div>

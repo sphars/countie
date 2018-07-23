@@ -9,6 +9,12 @@ body{
     color: #dfe1e8;
     display: flex;
     flex-direction: column;
+    font-family: 'Sunflower', sans-serif;
+}
+
+h1{
+    font-size: 4em;
+    margin: 1rem;
 }
 
 .main-content{
@@ -19,22 +25,42 @@ body{
     align-items: center;
 }
 
-.buttons{
+button{
+    font-family: inherit;
+}
+
+.btn{
+    margin: 1em 0;
+    border: 1px solid transparent;
+    background-color: #6c757d;
+    padding: 8px;
+    text-align: center;
+    transition: background-color .15s ease-out;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn:hover{
+    background-color: #5a6268;
+}
+
+.btn-block{
+    display: block;
+    width: 100%;
+}
+
+.btn-rounded{
+    border-radius: .3rem;
+}
+
+.count-buttons{
     width: 75%;
     max-width: 600px;
 }
 
-.click-button{
-    display: block;
-    width: 100%;
-    margin: 1em 0;
-    border: 1px solid #0f0f0f;
-    background-color: #f0f0f0;
-    font-size: 2em;
-}
-
-#count{
-    font-size: 3em;
+.count-buttons .btn{
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .text-center{
@@ -42,5 +68,21 @@ body{
 }
 
 header, footer{
+    background: #3f4f60;
+}
+
+footer{
     padding: 20px;
+}
+
+footer a{
+    color: #bfbfbf;
+}
+
+#count{
+    font-size: 6em;
+}
+
+#increase{
+    padding: 3rem;
 }
