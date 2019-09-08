@@ -11,14 +11,14 @@ saveButton.addEventListener('click', saveCount);
 resetButton.addEventListener('click', resetCount);
 
 function increaseCount(){
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(75);
     totalCount++;
     console.log(totalCount);
     updateCount();
 }
 
 function decreaseCount(){
-    window.navigator.vibrate(200);
+    window.navigator.vibrate(75);
     if(totalCount > 0) totalCount--;
     console.log(totalCount);
     updateCount();
