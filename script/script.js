@@ -1,16 +1,18 @@
 //Buttons
-const count = document.querySelector("#count");
 const increaseBtn = document.querySelector('#increase');
 const decreaseBtn = document.querySelector('#decrease');
 const saveBtn = document.querySelector('#save');
 const resetBtn = document.querySelector('#reset');
 const resetAllBtn = document.querySelector('#resetAll');
+
+//DOM things
+const count = document.querySelector("#count");
 const countUl = document.querySelector('ul');
+const countTable = document.querySelector('#countTable');
 
 let totalCount = 0;
 
 //Manage counts
-
 //get the records from storage
 let countRecordsArray = localStorage.getItem('counts') ? JSON.parse(localStorage.getItem('counts')) : [];
 
@@ -20,17 +22,21 @@ localStorage.setItem('counts', JSON.stringify(countRecordsArray));
 //fecth data for local modifications
 const countData = JSON.parse(localStorage.getItem('counts'));
 
-//create an li entry
-const liMaker = record =>{
-    const li = document.createElement('li');
-    const recordDate = new Date(record.date).toLocaleString();
-    li.textContent = recordDate + ": " + record.count + ": " + record.note;
-    countUl.appendChild(li);
+//create a new row
+const addRow = record => {
+    var tableBody = countTable.querySelector('tbody');
+    let newRow = tableBody.insertRow(-1);
+    
+    //cells
+    newRow.insertCell(0).textContent = new Date(record.date).toLocaleString();
+    newRow.insertCell(1).textContent = record.count;
+    newRow.insertCell(2).textContent = record.note;
+
 }
 
-//loop through count array and make an li for each
+//loop through count array and make a new row for each
 countData.forEach(item => {
-    liMaker(item);
+    addRow(item);
 });
 
 //Functions
@@ -53,17 +59,26 @@ function updateCount(){
 //saves the current count, creates a record, adds to the storage
 function saveCount(){
 
-    //creates a record object
-    const countRecord = {
-        date: new Date(),
-        count: totalCount,
-        note: prompt("Type a note")
-    }
+    if (totalCount == 0) {
+        alert("Can't save an empty count!");
+    } else {
+        let countDescription = prompt('Count note:');
+        if (countDescription != null){
+            
+            //create a record object
+            const countRecord = {
+                date: new Date(),
+                count: totalCount,
+                note: countDescription
+            }
+        
+            countRecordsArray.push(countRecord);
+            localStorage.setItem('counts', JSON.stringify(countRecordsArray));
 
-    countRecordsArray.push(countRecord);
-    localStorage.setItem('counts', JSON.stringify(countRecordsArray));
-    liMaker(countRecord);
-    resetCount();
+            addRow(countRecord);
+            resetCount();
+        }
+    }    
 }
 
 function resetCount(){
@@ -73,8 +88,9 @@ function resetCount(){
 
 function resetAll(){
     localStorage.clear();
-    while (countUl.firstChild){
-        countUl.removeChild(countUl.firstChild)
+    let tableBody = countTable.querySelector('tbody');
+    while (tableBody.firstChild){
+        tableBody.removeChild(tableBody.firstChild);
     }
 }
 
